@@ -2247,23 +2247,20 @@ input[type=checkbox] {
 .tk-content {
   margin-left: 0 !important;
 }
-/* 1. 彻底隐藏点赞和所有图标 */
+/* 1. 彻底隐藏所有图标、点赞、回复按钮 */
 .tk-icon-like,
 .tk-action-count,
-.tk-action-icon svg {
+.tk-action-icon,
+.tk-action-link,
+.tk-tag {
   display: none !important;
 }
-/* 2. 隐藏“回复”文字，但保留它的点击功能 */
-.tk-action-link {
-  color: transparent !important /* 文字透明 */;
-  font-size: 0.8rem;
-  cursor: pointer;
-  display: inline-block;
-  min-width: 40px /* 增加点击区域宽度 */;
-  text-align: center;
+/* 2. 让整条评论区域变成可以点击的状态 */
+.tk-content {
+  cursor: pointer !important;
+  margin-left: 0 !important;
 }
-/* 3. 可选：鼠标移上去时稍微显现一点颜色，免得你自己也找不到在哪 */
-.tk-action-link:hover {
-  color: #999 !important;
-  text-decoration: underline;
+/* 3. (可选) 鼠标指上去时，背景颜色轻微变一下，提醒你这里可以点 */
+.tk-content:hover {
+  background-color: rgba(0,0,0,0.02);
 }
