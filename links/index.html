@@ -277,36 +277,38 @@
 
 
 <style>
-/* 1. 彻底切除：头像、点赞图标、所有计数、标签 */
+/* 1. 彻底隐藏：头像、点赞相关、所有计数、标签 */
 .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag {
   display: none !important;
 }
 
-/* 2. 内容靠左：让评论文字不再给消失的头像留位置 */
+/* 2. 内容靠左 */
 .tk-content {
   margin-left: 0 !important;
 }
 
-/* 3. 处理回复按钮：隐藏原本那个可能带图标的小方块，但保住点击功能 */
+/* 3. 处理回复按钮：先把里面所有原生的“乱七八糟”都变透明 */
 .tk-action-link {
   display: inline-block !important;
   visibility: visible !important;
   cursor: pointer !important;
-  font-size: 0.85rem !important;
-  color: #4a90e2 !important; /* 蓝色，像个正经链接 */
+  font-size: 0 !important;       /* 绝招：让原生的两个回复文字大小变成 0，直接消失 */
+  color: transparent !important; /* 彻底透明 */
   text-decoration: none !important;
 }
 
-/* 4. 关键：把原本的图标隐藏，换成纯文字 */
+/* 4. 重点：隐藏原本那个可能带图标的小方块 */
 .tk-action-icon {
-  display: none !important; /* 杀掉那个乱跳的图标 */
+  display: none !important;
 }
 
-/* 5. 最终杀招：强行在点击区域写上“回复”二字 */
+/* 5. 最终降临：重新画出我们想要的那个唯一的、蓝色的回复 */
 .tk-action-link::before {
-  content: "回复" !important; /* 既然原生的不出来，我们就亲手写上去 */
-  display: inline-block !important;
+  content: "回复" !important;    /* 亲手写上去 */
+  font-size: 0.85rem !important; /* 重新给它大小 */
+  color: #4a90e2 !important;     /* 重新给它颜色 */
   visibility: visible !important;
+  display: inline-block !important;
 }
 </style>
 
