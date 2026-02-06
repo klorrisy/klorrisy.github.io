@@ -2247,18 +2247,18 @@ input[type=checkbox] {
 .tk-content {
   margin-left: 0 !important;
 }
-/* 隐藏点赞、回复图标和文字 */
-.tk-action-icon,
+/* 1. 彻底隐藏点赞图标（既然你不需要它） */
+.tk-icon-like,
 .tk-action-count {
   display: none !important;
 }
-/* 隐藏评论框下的 Markdown 标志和预览按钮 */
-.tk-submit-action-icon,
-.tk-preview-container,
-.tk-preview {
+/* 2. 让回复图标（小气泡）变得极简：去掉图标，只留“回复”两个字 */
+/* 或者如果你连字都不想要，我们可以让它变成一个透明的点击区域 */
+.tk-action-icon svg {
   display: none !important;
 }
-/* 隐藏评论之间多余的小圆点或其他分隔符 */
-.tk-tag {
-  display: none !important;
+.tk-action-link {
+  font-size: 0.8rem;
+  color: #999;
+  cursor: pointer;
 }
