@@ -2247,18 +2247,18 @@ input[type=checkbox] {
 .tk-content {
   margin-left: 0 !important;
 }
-/* 1. 彻底隐藏点赞图标（既然你不需要它） */
+/* 1. 隐藏点赞图标和文字 */
 .tk-icon-like,
 .tk-action-count {
   display: none !important;
 }
-/* 2. 让回复图标（小气泡）变得极简：去掉图标，只留“回复”两个字 */
-/* 或者如果你连字都不想要，我们可以让它变成一个透明的点击区域 */
+/* 2. 隐藏回复图标，但保留“回复”文字作为按钮 */
 .tk-action-icon svg {
   display: none !important;
 }
+/* 3. 调优回复文字的样式，让它干干净净 */
 .tk-action-link {
   font-size: 0.8rem;
-  color: #999;
+  color: #999 !important;
   cursor: pointer;
 }
