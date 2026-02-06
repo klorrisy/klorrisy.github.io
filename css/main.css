@@ -2239,7 +2239,7 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
-/* 1. 彻底隐藏：头像、点赞、气泡图标、杂项标签 */
+/* 1. 彻底隐藏：头像、点赞、图标、标签 */
 .tk-avatar,
 .tk-submit-avatar,
 .tk-icon-like,
@@ -2249,16 +2249,25 @@ input[type=checkbox] {
 .tk-comment-helper-avatar {
   display: none !important;
 }
-/* 2. 让评论内容靠左，填补头像空位 */
+/* 2. 内容靠左对齐 */
 .tk-content {
   margin-left: 0 !important;
 }
-/* 3. 恢复并极简化回复按钮：让它变成淡灰色的文字 */
+/* 3. 绝招：把“回复”两个字压缩成一个极小的灰点 */
 .tk-action-link {
+  font-size: 0 !important /* 让“回复”文字变没 */;
   display: inline-block !important;
   visibility: visible !important;
-  font-size: 0.75rem !important;
-  color: #d0d0d0 !important /* 极浅的灰色 */;
   cursor: pointer !important;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+.tk-action-link::before {
+  content: "●" /* 用一个实心圆点代替文字 */;
+  font-size: 10px !important;
+  color: #eee !important /* 颜色极浅，接近背景 */;
+  transition: 0.3s;
+}
+/* 4. 鼠标移上去时，圆点稍微变深，方便你点它 */
+.tk-action-link:hover::before {
+  color: #999 !important;
 }
