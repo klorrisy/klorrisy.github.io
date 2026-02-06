@@ -365,16 +365,22 @@
               
             </div>
 
-                  twikoo.init(options);
-      // 这里的代码会自动运行，不会显示在页面上
-      const style = document.createElement('style');
-      style.innerHTML = `
-        .tk-avatar { display: none !important; }
-        .tk-action-link:first-child { display: none !important; }
-        .tk-action-count { display: none !important; }
-        .tk-main { margin-left: 0 !important; }
-      `;
-      document.head.appendChild(style);
+            <style>
+  /* 隐藏头像 */
+  .tk-avatar { display: none !important; }
+  
+  /* 隐藏点赞按钮（第一个按钮） */
+  .tk-action-link:first-child { display: none !important; }
+  
+  /* 隐藏所有计数数字 */
+  .tk-action-count { display: none !important; }
+  
+  /* 修复左侧间距 */
+  .tk-main { margin-left: 0 !important; }
+  
+  /* 强行保住回复按钮（第二个按钮） */
+  .tk-action-link:last-child { display: inline-flex !important; }
+</style>
 
 
   
