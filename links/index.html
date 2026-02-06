@@ -277,34 +277,38 @@
 
 
 <style>
-/* 1. 彻底切除：头像、点赞按钮、点赞计数、标签 */
+/* 1. 彻底切除：头像、点赞、标签、所有计数 */
 .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag {
   display: none !important;
 }
 
-/* 2. 内容靠左：填补左侧空白 */
+/* 2. 内容靠左 */
 .tk-content {
   margin-left: 0 !important;
 }
 
-/* 3. 重点：把回复按钮里的那个“图标”杀掉 */
-.tk-action-icon {
-  display: none !important;
-}
-
-/* 4. 修饰：只留下那个“真回复”的文字 */
+/* 3. 关键：把回复按钮里所有原生的文字、图标全部变透明并缩小到 0 */
 .tk-action-link {
   display: inline-block !important;
   visibility: visible !important;
-  font-size: 0.85rem !important;
-  color: #4a90e2 !important;     /* 蓝色，像个链接 */
+  font-size: 0 !important;       /* 让原生的两个回复文字消失 */
+  color: transparent !important; /* 让原生的文字彻底看不见 */
   cursor: pointer !important;
   text-decoration: none !important;
 }
 
-/* 5. 关键动作：删掉我们之前所有强行加进去的“假文字” */
-.tk-action-link::before, .tk-action-link::after {
-  content: none !important;      /* 彻底清空我们加的东西，不跟原生的打架 */
+/* 4. 隐藏回复按钮里的那个图标占位符 */
+.tk-action-icon {
+  display: none !important;
+}
+
+/* 5. 唯一生还者：亲手画出这一个蓝色的“回复” */
+.tk-action-link::before {
+  content: "回复" !important;    /* 亲手写上去，全网页仅此一个 */
+  font-size: 0.85rem !important; /* 重新给它大小，让它显形 */
+  color: #4a90e2 !important;     /* 给它蓝色 */
+  visibility: visible !important;
+  display: inline-block !important;
 }
 </style>
 
