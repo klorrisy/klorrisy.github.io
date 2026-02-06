@@ -366,31 +366,30 @@
             </div>
 
             <style>
-  /* 1. 彻底切除：头像、点赞图标、回复图标、各种计数、标签 */
-  .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-action-icon, .tk-tag {
-    display: none !important;
-  }
+/* 1. 彻底隐藏：头像、点赞相关、回复图标、标签 */
+.tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-action-icon, .tk-tag {
+  display: none !important;
+}
 
-  /* 2. 让文字靠左：填补头像消失后的巨大空白 */
-  .tk-content {
-    margin-left: 0 !important;
-  }
+/* 2. 内容靠左 */
+.tk-content {
+  margin-left: 0 !important;
+}
 
-  /* 3. 强制召唤“回复”文字：不管有没有图标，让这两个字强行出现 */
-  .tk-action-link {
-    display: inline-block !important;
-    visibility: visible !important;
-    cursor: pointer !important;
-    font-size: 0.85rem !important; /* 字体稍微调大一点点，方便点 */
-    color: #4a90e2 !important;     /* 换个蓝色，让人一眼看出这是可以点的 */
-    margin-top: 5px !important;
-  }
+/* 3. 修饰“真回复”文字 */
+.tk-action-link {
+  display: inline-block !important;
+  visibility: visible !important;
+  font-size: 0.85rem !important;
+  color: #4a90e2 !important;     /* 蓝色看起来更像链接 */
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
 
-  /* 4. 重点：有些主题会把文字藏在图标里，这里强行把它抠出来 */
-  .tk-action-link::after {
-    content: "回复" !important;    /* 这一句是绝杀，直接在网页上写字 */
-    margin-left: 2px;
-  }
+/* 4. 重点：删掉我们之前多加的那个“假回复”内容 */
+.tk-action-link::after {
+  content: "" !important;  /* 把那个假的删了 */
+}
 </style>
 
 
