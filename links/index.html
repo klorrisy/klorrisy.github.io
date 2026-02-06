@@ -277,35 +277,37 @@
 
 
 <style>
-/* 1. 彻底切除：头像、点赞、标签、所有计数 */
-.tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag {
-  display: none !important;
-}
-
-/* 2. 内容靠左 */
-.tk-content {
-  margin-left: 0 !important;
-}
-
-/* 3. 隐藏回复按钮里的那个图标 */
-.tk-action-icon {
-  display: none !important;
-}
-
-/* 4. 【绝杀招式】不管有多少层级，只让第一个出现的回复链接显形 */
-.tk-action-link {
-  display: none !important; /* 先让所有回复链接都消失 */
-}
-
-/* 重点：只让第一个出现的链接活下来 */
-.tk-main .tk-action:first-child .tk-action-link {
-  display: inline-block !important;
-  visibility: visible !important;
-  font-size: 0.85rem !important;
-  color: #4a90e2 !important;
-  cursor: pointer !important;
-}
+  /* 基础清理：隐藏头像、点赞、计数、标签 */
+  .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag, .tk-action-icon {
+    display: none !important;
+  }
+  .tk-content { margin-left: 0 !important; }
+  .tk-action-link { 
+    display: inline-block !important; 
+    color: #4a90e2 !important; 
+    font-size: 0.85rem !important;
+  }
 </style>
+
+<script>
+  // 每隔一秒钟检查一次，直到把多余的回复删掉为止
+  var fixTwikoo = setInterval(function () {
+    var actions = document.querySelectorAll('.tk-action');
+    if (actions.length > 0) {
+      actions.forEach(function(action) {
+        var links = action.querySelectorAll('.tk-action-link');
+        if (links.length > 1) {
+          // 如果一个动作组里有多个回复，只留第一个，删掉后面的
+          for (var i = 1; i < links.length; i++) {
+            links[i].remove();
+          }
+        }
+      });
+      // 任务完成，停止检查
+      // clearInterval(fixTwikoo); // 如果评论是动态刷新的，可以注释掉这行
+    }
+  }, 1000);
+</script>
 
 
   
