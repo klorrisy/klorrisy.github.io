@@ -354,25 +354,38 @@
             </div>
 
             <style>
-  /* 1. 暴力清理：隐藏所有不想要的元素 */
-  .tk-avatar, .tk-submit-avatar, .tk-icon-like, .tk-action-count, .tk-tag, .tk-action-icon {
+  /* 1. 基础清理：隐藏头像、计数、标签 */
+  .tk-avatar, .tk-submit-avatar, .tk-tag, .tk-action-count {
     display: none !important;
   }
-  .tk-content { margin-left: 0 !important; }
   
-  /* 2. 初始状态：先让所有回复可见 */
-  .tk-action-link { 
-    display: inline-block !important; 
-    color: #4a90e2 !important; 
-    font-size: 0.85rem !important;
+  /* 2. 让内容靠左 */
+  .tk-content { margin-left: 0 !important; }
+
+  /* 3. 【重点】精准打击第一个链接（它是点赞） */
+  .tk-action .tk-action-link:first-child {
+    display: none !important;
+  }
+
+  /* 4. 【重点】全力保住第二个链接（它是真回复） */
+  .tk-action .tk-action-link:nth-child(2) {
+    display: inline-block !important;
     visibility: visible !important;
+    color: #4a90e2 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+  }
+  
+  /* 5. 隐藏所有残留的图标，确保只剩文字 */
+  .tk-action-icon {
+    display: none !important;
   }
 </style>
 
 
   
   
-    <article id="comments" lazyload class="comments-container">
+    <article id="comments" lazyload>
       
   <div id="twikoo"></div>
   <script type="text/javascript">
@@ -402,28 +415,6 @@
     </article>
   
 
-
-<script>
-  (function() {
-    // 使用 MutationObserver 实时监控评论区的变化
-    var observer = new MutationObserver(function(mutations) {
-      var actions = document.querySelectorAll('.tk-action');
-      actions.forEach(function(action) {
-        var links = action.querySelectorAll('.tk-action-link');
-        // 如果发现超过一个回复链接，强行删掉后面的
-        if (links.length > 1) {
-          for (var i = 1; i < links.length; i++) {
-            links[i].style.display = 'none'; // 先隐藏
-            links[i].remove(); // 后彻底删除
-          }
-        }
-      });
-    });
-
-    // 开始监控页面
-    observer.observe(document.body, { childList: true, subtree: true });
-  })();
-</script>
 
           </article>
         </div>
