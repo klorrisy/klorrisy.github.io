@@ -277,37 +277,26 @@
 
 
 <style>
-  /* 1. 物理清理：头像、计数、标签 */
-  .tk-avatar, .tk-submit-avatar, .tk-tag, .tk-action-count {
+  /* 基础清理不变 */
+  .tk-avatar, .tk-submit-avatar, .tk-tag, .tk-action-count, .tk-action-icon {
     display: none !important;
   }
-  
-  /* 2. 内容靠左 */
   .tk-content { margin-left: 0 !important; }
 
-  /* 3. 隐藏所有图标 */
-  .tk-action-icon {
-    display: none !important;
-  }
-
-  /* 4. 【核心改动】处理点赞和回复 */
-  /* 我们不删第一个，我们只是把它变得像空气一样 */
-  .tk-action-link:first-child {
-    position: absolute !important;
-    opacity: 0 !important;          /* 彻底透明 */
-    width: 0 !important;            /* 宽度为0 */
-    height: 0 !important;           /* 高度为0 */
-    overflow: hidden !important;    /* 溢出隐藏 */
-    pointer-events: none !important; /* 不可点击，不挡路 */
-  }
-
-  /* 5. 确保真回复（第二个）显眼 */
-  .tk-action-link:nth-child(2) {
+  /* 既然分不清谁是谁，我们让所有按钮先“现形” */
+  .tk-action-link {
     display: inline-block !important;
     visibility: visible !important;
     color: #4a90e2 !important;
     font-size: 0.85rem !important;
-    margin-left: 0 !important;
+  }
+
+  /* 绝杀：如果按钮里的文字包含“点赞”或者干脆就是第一个，我们让它变透明 */
+  /* 我们不再用 display: none，改用绝对定位把它推开，这样绝对不会误杀“回复” */
+  .tk-action-link:not(:last-child) {
+    position: absolute !important;
+    left: -9999px !important; 
+    opacity: 0 !important;
   }
 </style>
 
