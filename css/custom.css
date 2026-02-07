@@ -84,10 +84,24 @@ body {
     color: var(--text-color) !important;
 }
 
-/* 专门缩小手机端标题的大小 */
+/* 针对手机端标题的最后一击 */
 @media (max-width: 767px) {
-    .index-header, .post-content h1, .h2 {
-        font-size: 1.1rem !important; /* 调整这个数字可以控制大小，1.1 是比较秀气的 */
+    /* 1. 缩小首页标题 */
+    .index-header, 
+    .index-header a {
+        font-size: 1.1rem !important;
         line-height: 1.4 !important;
+    }
+    
+    /* 2. 缩小详情页标题 */
+    .post-content h1, 
+    .post-content h2,
+    .post-title {
+        font-size: 1.3rem !important;
+    }
+
+    /* 3. 顺便把文章之间的间距收紧一点，别让手机划不到头 */
+    .index-card {
+        padding: 20px 0 !important;
     }
 }
