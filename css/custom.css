@@ -1,0 +1,85 @@
+/* 只有首页（.index）才允许 banner 显示原始高度 */
+.index .banner {
+    height: 100vh !important; /* 或者是你想要的任何高度，比如 60vh */
+    display: block !important;
+}
+
+/* 首页的标题必须显现 */
+.index .header-inner {
+    display: block !important;
+}
+
+/* 1. 核心：强制把那个 100vh 的变态高度杀掉 */
+.header-inner[style*="height: 100vh"] {
+    height: 70px !important; /* 强行缩回导航栏高度 */
+}
+
+/* 2. 针对非首页：把所有占位的大盒子全部压缩 */
+body:not(.index) .banner,
+body:not(.index) .header-inner {
+    height: 70px !important;
+    min-height: 70px !important;
+    background-color: #2f4154 !important; /* 保持导航栏那个深蓝色 */
+}
+
+/* 3. 藏掉那个在空白里隐身的空标题容器 */
+body:not(.index) .page-header,
+body:not(.index) .mask {
+    display: none !important;
+}
+
+/* 4. 让正文白色盒子直接贴上来 */
+body:not(.index) #board {
+    margin-top: 0 !important;
+}
+
+/* 1. 基础背景：让网页地基跟着“小太阳/小月亮”变色 */
+body {
+    background-color: var(--body-bg-color) !important;
+    transition: background-color 0.3s ease;
+}
+
+/* 2. 核心白底画布：拉伸到全屏，背景色自动适配深色模式 */
+#board {
+    background-color: var(--board-bg-color) !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 60px 15% !important; /* 15% 是黄金留白，让大屏阅读不累 */
+    min-height: 100vh !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 3. 物理切除：目录(TOC)、页脚水印、以及多余的阴影 */
+#toc, .toc-container, footer, .about-avatar, .about-icons {
+    display: none !important;
+}
+
+/* 4. 容器拉伸：拆掉 Bootstrap 的栅格限制，让内容不再缩着 */
+.container, .container-fluid, .row {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.col-lg-8, .col-md-10, .col-sm-12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+/* 5. 首页文章卡片：改成简约的“阮一峰式”横线分割 */
+.index-card {
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 30px 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+/* 6. 文章标题与正文：确保 100% 宽度且颜色跟随主题 */
+.post-content, .index-header {
+    max-width: 100% !important;
+    width: 100% !important;
+    color: var(--text-color) !important;
+}
